@@ -1,0 +1,464 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "08f33e9af344ee3423cc",
+  "position": {
+    "x": 16,
+    "y": 158,
+    "z": 3000,
+    "width": 924,
+    "height": 546,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "orgConstellation1D8620C3FB9E420FA0E2FE58C9A80FA5",
+    "query": {
+      "queryState": {
+        "personId": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "People"
+                    }
+                  },
+                  "Property": "PersonID"
+                }
+              },
+              "queryRef": "People.PersonID",
+              "nativeQueryRef": "PersonID"
+            }
+          ]
+        },
+        "managerId": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "People"
+                    }
+                  },
+                  "Property": "ManagerID"
+                }
+              },
+              "queryRef": "People.ManagerID",
+              "nativeQueryRef": "ManagerID"
+            }
+          ]
+        },
+        "name": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "People"
+                    }
+                  },
+                  "Property": "Name"
+                }
+              },
+              "queryRef": "People.Name",
+              "nativeQueryRef": "Name"
+            }
+          ]
+        },
+        "title": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "People"
+                    }
+                  },
+                  "Property": "Title"
+                }
+              },
+              "queryRef": "People.Title",
+              "nativeQueryRef": "Title"
+            }
+          ]
+        },
+        "team": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "People"
+                    }
+                  },
+                  "Property": "Team"
+                }
+              },
+              "queryRef": "People.Team",
+              "nativeQueryRef": "Team"
+            }
+          ]
+        },
+        "group": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "People"
+                    }
+                  },
+                  "Property": "Unit"
+                }
+              },
+              "queryRef": "People.Unit",
+              "nativeQueryRef": "Unit"
+            }
+          ]
+        },
+        "location": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "People"
+                    }
+                  },
+                  "Property": "Location"
+                }
+              },
+              "queryRef": "People.Location",
+              "nativeQueryRef": "Location"
+            }
+          ]
+        },
+        "status": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "People"
+                    }
+                  },
+                  "Property": "Status"
+                }
+              },
+              "queryRef": "People.Status",
+              "nativeQueryRef": "Status"
+            }
+          ]
+        },
+        "size": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Staff Cost"
+                }
+              },
+              "queryRef": "_Measures.Staff Cost",
+              "nativeQueryRef": "Staff Cost",
+              "displayName": "Staff cost"
+            }
+          ]
+        },
+        "startDate": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "People"
+                    }
+                  },
+                  "Property": "StartDate"
+                }
+              },
+              "queryRef": "People.StartDate",
+              "nativeQueryRef": "StartDate",
+              "displayName": "Start date"
+            }
+          ]
+        },
+        "budget": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Budgeted Cost"
+                }
+              },
+              "queryRef": "_Measures.Budgeted Cost",
+              "nativeQueryRef": "Budgeted Cost",
+              "displayName": "Budget"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "view": [
+        {
+          "properties": {
+            "defaultView": {
+              "expr": {
+                "Literal": {
+                  "Value": "'constellation'"
+                }
+              }
+            },
+            "clusterBy": {
+              "expr": {
+                "Literal": {
+                  "Value": "'reporting'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E3E6EA'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Each circle is a person. Lines show who reports to whom, and each colour is a department. Hold Shift and drag to select people, or switch to Org chart to see a manager and their teams.'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#6B7280'"
+                    }
+                  }
+                }
+              }
+            },
+            "italic": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI'"
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'People'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1F2937'"
+                    }
+                  }
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI Semibold'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

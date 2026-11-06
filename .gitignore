@@ -1,0 +1,13 @@
+# Node and build output for the visual (the packaged .pbiviz in visual/dist is kept on purpose)
+node_modules/
+visual/.tmp/
+visual/webpack.statistics.*.html
+visual/certs/
+
+# Power BI Desktop local files
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+
+# Python
+__pycache__/
+*.pyc

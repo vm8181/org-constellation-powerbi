@@ -1,0 +1,26 @@
+{
+  "visual": {
+    "name": "orgConstellation",
+    "displayName": "Org Constellation",
+    "guid": "orgConstellation1D8620C3FB9E420FA0E2FE58C9A80FA5",
+    "visualClassName": "Visual",
+    "version": "1.0.0.0",
+    "description": "An organisation shown as a constellation of people clustered by location or team, and as an org chart. Search, team highlight, lasso selection and cross-filtering.",
+    "supportUrl": "https://github.com/vm8181/org-constellation-powerbi",
+    "gitHubUrl": "https://github.com/vm8181/org-constellation-powerbi"
+  },
+  "apiVersion": "5.11.1",
+  "author": {
+    "name": "Vikash Mishra",
+    "email": "vikashm6991@gmail.com"
+  },
+  "assets": {
+    "icon": "assets/icon.png"
+  },
+  "externalJS": null,
+  "style": "style/visual.less",
+  "capabilities": "capabilities.json",
+  "dependencies": null,
+  "stringResources": [],
+  "version": "1.0.0.0"
+}

@@ -1,0 +1,176 @@
+PersonID,ManagerID,Name,Title,Team,Unit,Location,Level,Status,AnnualCost,BudgetedCost,StartDate
+P0001,,Ishaan Chopra,Chief Executive Officer,Executive,Leadership,Mumbai,Executive,Active,10050000,10050000,2020-11-05
+P0002,P0001,Farhan Gupta,VP Engineering,Engineering,Engineering leadership,Bengaluru,Head of team,Active,5940000,5940000,2019-11-06
+P0003,P0002,Yash Pandey,Engineering Manager,Engineering,Platform,Bengaluru,Manager,Active,3800000,3800000,2020-06-11
+P0004,P0003,Reyansh Patel,QA Engineer,Engineering,Platform,Bengaluru,Individual contributor,Active,1100000,1100000,2025-06-27
+P0005,P0003,Open role - Senior Software Engineer,Senior Software Engineer,Engineering,Platform,Remote,Senior,Open role,0,2510000,
+P0006,P0003,Rakesh Bose,Senior Software Engineer,Engineering,Platform,Bengaluru,Senior,Active,2640000,2640000,2022-05-14
+P0007,P0003,Neha Menon,QA Engineer,Engineering,Platform,Bengaluru,Individual contributor,Active,1380000,1380000,2020-07-21
+P0008,P0003,Farhan Pillai,Senior Software Engineer,Engineering,Platform,Bengaluru,Senior,Active,1830000,1830000,2018-08-13
+P0009,P0003,Vikram Saxena,Senior Software Engineer,Engineering,Platform,Bengaluru,Senior,Active,2710000,2710000,2025-04-13
+P0010,P0003,Kavya Saxena,Senior Software Engineer,Engineering,Platform,Bengaluru,Senior,Active,2220000,2220000,2020-09-14
+P0011,P0003,Tanvi Thomas,Senior Software Engineer,Engineering,Platform,Bengaluru,Senior,Active,2340000,2340000,2026-04-21
+P0012,P0003,Arjun Mathew,QA Engineer,Engineering,Platform,Bengaluru,Individual contributor,Active,1730000,1730000,2019-01-25
+P0013,P0002,Krishna Naidu,Engineering Manager,Engineering,Mobile apps,Pune,Manager,Active,3590000,3590000,2024-12-27
+P0014,P0013,Sara Kapoor,Software Engineer,Engineering,Mobile apps,Pune,Individual contributor,Active,1510000,1510000,2021-04-28
+P0015,P0013,Gaurav Mishra,QA Engineer,Engineering,Mobile apps,Hyderabad,Individual contributor,Active,1500000,1500000,2023-02-19
+P0016,P0013,Tanvi Mishra,QA Engineer,Engineering,Mobile apps,Pune,Individual contributor,Active,1250000,1250000,2024-04-25
+P0017,P0013,Kabir Kapoor,Senior Software Engineer,Engineering,Mobile apps,Pune,Senior,Active,2640000,2640000,2020-09-21
+P0018,P0013,Sara Saxena,Senior Software Engineer,Engineering,Mobile apps,Pune,Senior,Active,2290000,2290000,2020-11-07
+P0019,P0013,Swati Iyer,Senior Software Engineer,Engineering,Mobile apps,Pune,Senior,Active,2670000,2670000,2023-05-02
+P0020,P0013,Sara Thomas,Senior Software Engineer,Engineering,Mobile apps,Remote,Senior,Active,2070000,2070000,2021-07-04
+P0021,P0013,Bhavna Nair,Software Engineer,Engineering,Mobile apps,Remote,Individual contributor,Active,1480000,1480000,2023-08-07
+P0022,P0013,Nisha Pandey,Senior Software Engineer,Engineering,Mobile apps,Pune,Senior,Active,1950000,1950000,2021-07-19
+P0023,P0002,Swati Sharma,Engineering Manager,Engineering,Payments,Hyderabad,Manager,Active,2790000,2790000,2026-08-02
+P0024,P0023,Myra Patel,QA Engineer,Engineering,Payments,Pune,Individual contributor,Active,1450000,1450000,2026-02-01
+P0025,P0023,Aisha Bose,QA Engineer,Engineering,Payments,Hyderabad,Individual contributor,Active,960000,960000,2026-07-12
+P0026,P0023,Rakesh Saxena,Senior Software Engineer,Engineering,Payments,Hyderabad,Senior,Active,2520000,2520000,2018-07-04
+P0027,P0023,Rohan Thomas,Software Engineer,Engineering,Payments,Hyderabad,Individual contributor,Active,1100000,1100000,2025-08-22
+P0028,P0023,Riya Pandey,Senior Software Engineer,Engineering,Payments,Hyderabad,Senior,Active,2210000,2210000,2024-12-02
+P0029,P0023,Krishna Agarwal,QA Engineer,Engineering,Payments,Hyderabad,Individual contributor,Active,1730000,1730000,2025-10-06
+P0030,P0023,Rakesh Verma,Software Engineer,Engineering,Payments,Hyderabad,Individual contributor,Active,830000,830000,2020-11-11
+P0031,P0023,Rahul Patel,Senior Software Engineer,Engineering,Payments,Hyderabad,Senior,Active,2320000,2320000,2021-05-09
+P0032,P0023,Harsh Mathew,QA Engineer,Engineering,Payments,Hyderabad,Individual contributor,Active,1020000,1020000,2021-09-21
+P0033,P0002,Yash Malhotra,Engineering Manager,Engineering,Web,Remote,Manager,Active,3560000,3560000,2019-11-17
+P0034,P0033,Aditya Das,QA Engineer,Engineering,Web,Remote,Individual contributor,Active,1480000,1480000,2024-08-22
+P0035,P0033,Divya Das,Software Engineer,Engineering,Web,Bengaluru,Individual contributor,Active,1310000,1310000,2018-08-12
+P0036,P0033,Manish Banerjee,QA Engineer,Engineering,Web,Remote,Individual contributor,Active,1620000,1620000,2020-10-15
+P0037,P0033,Navya Naidu,Software Engineer,Engineering,Web,Remote,Individual contributor,Active,1360000,1360000,2021-12-10
+P0038,P0033,Diya Khan,Software Engineer,Engineering,Web,Remote,Individual contributor,Active,1290000,1290000,2021-01-02
+P0039,P0033,Manish Bhat,Senior Software Engineer,Engineering,Web,Remote,Senior,Active,2270000,2270000,2025-03-29
+P0040,P0033,Anjali Gupta,QA Engineer,Engineering,Web,Remote,Individual contributor,Active,1690000,1690000,2024-03-08
+P0041,P0002,Kiara Sharma,Engineering Manager,Engineering,Cloud & infra,Bengaluru,Manager,Active,2800000,2800000,2021-06-29
+P0042,P0041,Vivaan Bose,Senior Software Engineer,Engineering,Cloud & infra,Pune,Senior,Active,2690000,2690000,2024-10-29
+P0043,P0041,Shreya Banerjee,Senior Software Engineer,Engineering,Cloud & infra,Bengaluru,Senior,Active,1920000,1920000,2019-08-17
+P0044,P0041,Maria Banerjee,QA Engineer,Engineering,Cloud & infra,Bengaluru,Individual contributor,Active,1400000,1400000,2023-04-13
+P0045,P0041,Krishna Khan,QA Engineer,Engineering,Cloud & infra,Bengaluru,Individual contributor,Active,900000,900000,2021-09-11
+P0046,P0041,Priya Joshi,Software Engineer,Engineering,Cloud & infra,Bengaluru,Individual contributor,On leave,1480000,1480000,2019-07-10
+P0047,P0041,Varun Nair,Software Engineer,Engineering,Cloud & infra,Bengaluru,Individual contributor,Active,1110000,1110000,2023-01-22
+P0048,P0041,Sneha Khan,Software Engineer,Engineering,Cloud & infra,Bengaluru,Individual contributor,Active,1230000,1230000,2026-05-31
+P0049,P0041,Ishaan Gupta,Software Engineer,Engineering,Cloud & infra,Bengaluru,Individual contributor,On leave,1520000,1520000,2020-04-17
+P0050,P0002,Isha Bose,Engineering Manager,Engineering,Quality,Pune,Manager,Active,3260000,3260000,2017-11-04
+P0051,P0050,Aditya Mishra,QA Engineer,Engineering,Quality,Pune,Individual contributor,Active,1130000,1130000,2019-10-09
+P0052,P0050,Imran Patel,Software Engineer,Engineering,Quality,Pune,Individual contributor,Active,1520000,1520000,2022-05-23
+P0053,P0050,Ira Bose,QA Engineer,Engineering,Quality,Remote,Individual contributor,Active,860000,860000,2018-05-04
+P0054,P0050,Sara Malhotra,QA Engineer,Engineering,Quality,Pune,Individual contributor,Active,1100000,1100000,2018-06-07
+P0055,P0050,Harsh Verma,Software Engineer,Engineering,Quality,Pune,Individual contributor,Active,1370000,1370000,2022-09-30
+P0056,P0050,Ishaan Kulkarni,Software Engineer,Engineering,Quality,Pune,Individual contributor,Active,1450000,1450000,2025-03-18
+P0057,P0050,Open role - Software Engineer,Software Engineer,Engineering,Quality,Pune,Individual contributor,Open role,0,1430000,
+P0058,P0050,Amit Shah,QA Engineer,Engineering,Quality,Pune,Individual contributor,Active,1170000,1170000,2021-12-05
+P0059,P0050,Zoya Mukherjee,Senior Software Engineer,Engineering,Quality,Pune,Senior,Active,2610000,2610000,2025-03-08
+P0060,P0001,Diya Ghosh,Head of Data,Data & Analytics,Data & Analytics leadership,Bengaluru,Head of team,Active,5120000,5120000,2019-03-03
+P0061,P0060,Joseph Ghosh,Analytics Manager,Data & Analytics,Analytics,Bengaluru,Manager,Active,3760000,3760000,2022-02-19
+P0062,P0061,Shreya Bhat,Data Analyst,Data & Analytics,Analytics,Bengaluru,Individual contributor,Active,1240000,1240000,2023-08-18
+P0063,P0061,Reyansh Joshi,BI Developer,Data & Analytics,Analytics,Bengaluru,Individual contributor,Active,1380000,1380000,2026-02-28
+P0064,P0061,Neha Mathew,Senior Data Analyst,Data & Analytics,Analytics,Hyderabad,Senior,Active,2590000,2590000,2018-04-03
+P0065,P0061,Myra Bhat,BI Developer,Data & Analytics,Analytics,Remote,Individual contributor,On leave,860000,860000,2024-02-06
+P0066,P0061,Arvind Mishra,Senior Data Analyst,Data & Analytics,Analytics,Bengaluru,Senior,Active,2540000,2540000,2022-07-20
+P0067,P0060,Bhavna Mukherjee,Data Engineering Manager,Data & Analytics,Data engineering,Hyderabad,Manager,Active,3780000,3780000,2023-06-30
+P0068,P0067,Nikhil Bhat,Data Engineer,Data & Analytics,Data engineering,Hyderabad,Individual contributor,Active,1740000,1740000,2019-01-13
+P0069,P0067,Kabir Saxena,Senior Data Engineer,Data & Analytics,Data engineering,Hyderabad,Senior,Active,2740000,2740000,2026-07-12
+P0070,P0067,Sneha Iyer,Senior Data Engineer,Data & Analytics,Data engineering,Remote,Senior,Active,2470000,2470000,2024-08-26
+P0071,P0067,Anika Shah,Data Engineer,Data & Analytics,Data engineering,Hyderabad,Individual contributor,Active,1550000,1550000,2018-04-17
+P0072,P0067,Aadhya Pillai,Data Engineer,Data & Analytics,Data engineering,Hyderabad,Individual contributor,Active,1400000,1400000,2026-02-01
+P0073,P0001,Vikram Agarwal,Sales Director,Sales,Sales leadership,Mumbai,Head of team,Active,7260000,7260000,2020-10-17
+P0074,P0073,Ravi Kulkarni,Regional Sales Manager,Sales,North sales,Mumbai,Manager,Active,3670000,3670000,2025-05-30
+P0075,P0074,Anika Pillai,Account Executive,Sales,North sales,Mumbai,Individual contributor,Active,840000,840000,2018-04-26
+P0076,P0074,Ajay D'Souza,Key Account Manager,Sales,North sales,Mumbai,Senior,Active,2110000,2110000,2020-07-08
+P0077,P0074,Arvind Sharma,Sales Associate,Sales,North sales,Delhi NCR,Individual contributor,Active,1690000,1690000,2019-10-17
+P0078,P0074,Ravi Ghosh,Key Account Manager,Sales,North sales,Mumbai,Senior,Active,1980000,1980000,2018-06-28
+P0079,P0074,Open role - Key Account Manager,Key Account Manager,Sales,North sales,Mumbai,Senior,Open role,0,1950000,
+P0080,P0074,Open role - Account Executive,Account Executive,Sales,North sales,Mumbai,Individual contributor,Open role,0,1500000,
+P0081,P0073,Pallavi Sharma,Regional Sales Manager,Sales,West sales,Delhi NCR,Manager,Active,3390000,3390000,2025-11-15
+P0082,P0081,Yash Singh,Sales Associate,Sales,West sales,Delhi NCR,Individual contributor,Active,930000,930000,2025-05-24
+P0083,P0081,Pooja Khan,Sales Associate,Sales,West sales,Mumbai,Individual contributor,Active,1450000,1450000,2023-03-17
+P0084,P0081,Siddharth Patel,Key Account Manager,Sales,West sales,Delhi NCR,Senior,Active,2380000,2380000,2020-10-07
+P0085,P0081,Nikhil Bose,Account Executive,Sales,West sales,Delhi NCR,Individual contributor,Active,890000,890000,2025-10-24
+P0086,P0081,Anika Mukherjee,Account Executive,Sales,West sales,Delhi NCR,Individual contributor,Active,980000,980000,2022-12-10
+P0087,P0081,Swati Saxena,Sales Associate,Sales,West sales,Delhi NCR,Individual contributor,Active,1220000,1220000,2023-01-26
+P0088,P0081,Tarun Bose,Account Executive,Sales,West sales,Delhi NCR,Individual contributor,Active,1600000,1600000,2017-10-04
+P0089,P0081,Aadhya Rao,Sales Associate,Sales,West sales,Bengaluru,Individual contributor,Active,1260000,1260000,2018-04-03
+P0090,P0073,Isha Shah,Regional Sales Manager,Sales,South sales,Chennai,Manager,Active,3500000,3500000,2023-08-02
+P0091,P0090,Anika Rao,Account Executive,Sales,South sales,Bengaluru,Individual contributor,Active,1370000,1370000,2019-07-23
+P0092,P0090,Navya D'Souza,Sales Associate,Sales,South sales,Mumbai,Individual contributor,Active,1400000,1400000,2021-06-13
+P0093,P0090,Joseph Malhotra,Key Account Manager,Sales,South sales,Chennai,Senior,Active,2510000,2510000,2021-12-29
+P0094,P0090,Siddharth Ghosh,Sales Associate,Sales,South sales,Chennai,Individual contributor,On leave,1340000,1340000,2024-03-26
+P0095,P0090,Rakesh Mishra,Sales Associate,Sales,South sales,Chennai,Individual contributor,Active,1560000,1560000,2024-08-24
+P0096,P0090,Rohan Malhotra,Account Executive,Sales,South sales,Chennai,Individual contributor,Active,1410000,1410000,2019-05-12
+P0097,P0090,Tanvi Bhat,Key Account Manager,Sales,South sales,Chennai,Senior,Active,2160000,2160000,2026-06-15
+P0098,P0090,Zoya Fernandes,Account Executive,Sales,South sales,Chennai,Individual contributor,Active,1140000,1140000,2026-05-22
+P0099,P0073,Suresh Banerjee,Regional Sales Manager,Sales,East sales,Bengaluru,Manager,Active,3560000,3560000,2020-10-23
+P0100,P0099,Sara Das,Key Account Manager,Sales,East sales,Bengaluru,Senior,Active,2370000,2370000,2017-12-18
+P0101,P0099,Kiara Kapoor,Account Executive,Sales,East sales,Bengaluru,Individual contributor,Active,1020000,1020000,2019-10-16
+P0102,P0099,Isha Pandey,Key Account Manager,Sales,East sales,Bengaluru,Senior,Active,2550000,2550000,2020-09-25
+P0103,P0099,Vivaan Fernandes,Key Account Manager,Sales,East sales,Bengaluru,Senior,Active,2780000,2780000,2021-11-18
+P0104,P0099,Kiara Bhat,Account Executive,Sales,East sales,Bengaluru,Individual contributor,Active,1490000,1490000,2019-02-25
+P0105,P0099,Tanvi Khan,Sales Associate,Sales,East sales,Bengaluru,Individual contributor,Active,1310000,1310000,2022-12-02
+P0106,P0099,Open role - Sales Associate,Sales Associate,Sales,East sales,Bengaluru,Individual contributor,Open role,0,820000,
+P0107,P0099,Lakshmi Kapoor,Sales Associate,Sales,East sales,Bengaluru,Individual contributor,Active,1010000,1010000,2022-06-19
+P0108,P0073,Navya Thomas,Regional Sales Manager,Sales,Key accounts,Mumbai,Manager,Active,3440000,3440000,2023-03-06
+P0109,P0108,Sai Thomas,Key Account Manager,Sales,Key accounts,Mumbai,Senior,On leave,2520000,2520000,2020-08-13
+P0110,P0108,Nisha Thomas,Sales Associate,Sales,Key accounts,Mumbai,Individual contributor,Active,1350000,1350000,2019-11-27
+P0111,P0108,Karan Joshi,Sales Associate,Sales,Key accounts,Mumbai,Individual contributor,Active,880000,880000,2020-04-13
+P0112,P0108,Aisha Gupta,Account Executive,Sales,Key accounts,Bengaluru,Individual contributor,Active,1770000,1770000,2019-10-03
+P0113,P0108,Open role - Account Executive,Account Executive,Sales,Key accounts,Mumbai,Individual contributor,Open role,0,1250000,
+P0114,P0108,Aadhya Fernandes,Key Account Manager,Sales,Key accounts,Mumbai,Senior,Active,2610000,2610000,2018-07-21
+P0115,P0108,Nisha Chopra,Sales Associate,Sales,Key accounts,Mumbai,Individual contributor,Active,1180000,1180000,2019-04-16
+P0116,P0001,Vikram Ghosh,Head of Customer Success,Customer Success,Customer Success leadership,Pune,Head of team,Active,7260000,7260000,2024-06-19
+P0117,P0116,Kabir Rao,Support Lead,Customer Success,Support desk,Pune,Manager,Active,2900000,2900000,2025-02-11
+P0118,P0117,Anjali Joshi,Support Specialist,Customer Success,Support desk,Pune,Individual contributor,Active,950000,950000,2023-08-03
+P0119,P0117,Sara Reddy,Customer Success Manager,Customer Success,Support desk,Pune,Individual contributor,Active,1590000,1590000,2024-07-03
+P0120,P0117,Swati Ghosh,Support Specialist,Customer Success,Support desk,Pune,Individual contributor,Active,830000,830000,2023-03-20
+P0121,P0117,Nikhil Pandey,Support Specialist,Customer Success,Support desk,Pune,Individual contributor,Active,960000,960000,2022-12-12
+P0122,P0117,Aarav Reddy,Support Specialist,Customer Success,Support desk,Pune,Individual contributor,Active,900000,900000,2022-08-18
+P0123,P0116,Harsh Khan,Support Lead,Customer Success,Onboarding,Chennai,Manager,Active,3290000,3290000,2018-02-06
+P0124,P0123,Amit Naidu,Support Specialist,Customer Success,Onboarding,Pune,Individual contributor,Active,1010000,1010000,2024-09-02
+P0125,P0123,Karan Kulkarni,Support Specialist,Customer Success,Onboarding,Pune,Individual contributor,Active,1360000,1360000,2021-11-08
+P0126,P0123,Aisha Hegde,Customer Success Manager,Customer Success,Onboarding,Chennai,Individual contributor,Active,1780000,1780000,2020-04-26
+P0127,P0123,Saanvi Patel,Customer Success Manager,Customer Success,Onboarding,Remote,Individual contributor,On leave,1590000,1590000,2025-09-14
+P0128,P0123,Ananya Patel,Customer Success Manager,Customer Success,Onboarding,Chennai,Individual contributor,Active,980000,980000,2024-04-21
+P0129,P0116,Farhan Naidu,Support Lead,Customer Success,Customer care,Remote,Manager,Active,3000000,3000000,2021-10-15
+P0130,P0129,Ira Jain,Support Specialist,Customer Success,Customer care,Chennai,Individual contributor,Active,1220000,1220000,2026-06-24
+P0131,P0129,Siddharth Shah,Customer Success Manager,Customer Success,Customer care,Chennai,Individual contributor,Active,910000,910000,2024-12-21
+P0132,P0129,Kavya Reddy,Support Specialist,Customer Success,Customer care,Remote,Individual contributor,Active,1780000,1780000,2018-10-04
+P0133,P0129,Nikhil Kapoor,Customer Success Manager,Customer Success,Customer care,Pune,Individual contributor,Active,1160000,1160000,2020-06-18
+P0134,P0129,Reyansh Iyer,Support Specialist,Customer Success,Customer care,Remote,Individual contributor,Active,870000,870000,2020-09-01
+P0135,P0001,Rakesh Hegde,Finance Director,Finance,Finance leadership,Mumbai,Head of team,Active,7370000,7370000,2025-05-14
+P0136,P0135,Pooja Kapoor,Finance Manager,Finance,Accounting,Mumbai,Manager,Active,3890000,3890000,2021-03-21
+P0137,P0136,Vivaan Gupta,Accountant,Finance,Accounting,Mumbai,Individual contributor,Active,1210000,1210000,2025-07-22
+P0138,P0136,Aditya Nair,Accountant,Finance,Accounting,Mumbai,Individual contributor,Active,1590000,1590000,2019-11-02
+P0139,P0136,Joseph Rao,Payroll Specialist,Finance,Accounting,Delhi NCR,Individual contributor,Active,1120000,1120000,2021-04-22
+P0140,P0136,Vikram Singh,Accountant,Finance,Accounting,Mumbai,Individual contributor,Active,1340000,1340000,2023-01-30
+P0141,P0136,Open role - Financial Analyst,Financial Analyst,Finance,Accounting,Mumbai,Individual contributor,Open role,0,990000,
+P0142,P0135,Suresh Patel,Finance Manager,Finance,Financial planning,Delhi NCR,Manager,Active,3830000,3830000,2021-03-31
+P0143,P0142,Bhavna Banerjee,Financial Analyst,Finance,Financial planning,Delhi NCR,Individual contributor,Active,1200000,1200000,2018-05-25
+P0144,P0142,Ira Singh,Accountant,Finance,Financial planning,Delhi NCR,Individual contributor,Active,1700000,1700000,2020-09-27
+P0145,P0142,Arvind Verma,Financial Analyst,Finance,Financial planning,Delhi NCR,Individual contributor,Active,1170000,1170000,2019-11-01
+P0146,P0142,Isha Jain,Payroll Specialist,Finance,Financial planning,Delhi NCR,Individual contributor,Active,1640000,1640000,2024-02-26
+P0147,P0142,Vikram Patel,Payroll Specialist,Finance,Financial planning,Delhi NCR,Individual contributor,On leave,1640000,1640000,2025-05-27
+P0148,P0001,Ravi Pandey,Head of People,People,People leadership,Bengaluru,Head of team,Active,6680000,6680000,2026-07-10
+P0149,P0148,Myra Das,People Partner,People,Talent,Bengaluru,Manager,Active,2710000,2710000,2023-08-23
+P0150,P0149,Ananya Iyer,People Operations Specialist,People,Talent,Bengaluru,Individual contributor,Active,1030000,1030000,2018-08-30
+P0151,P0149,Aditya Bose,Recruiter,People,Talent,Bengaluru,Individual contributor,Active,1730000,1730000,2018-10-21
+P0152,P0149,Rakesh Iyer,People Operations Specialist,People,Talent,Bengaluru,Individual contributor,Active,1780000,1780000,2024-06-15
+P0153,P0148,Farhan Bhat,People Partner,People,People operations,Delhi NCR,Manager,Active,2700000,2700000,2023-04-27
+P0154,P0153,Aarav D'Souza,Recruiter,People,People operations,Delhi NCR,Individual contributor,Active,1450000,1450000,2019-05-04
+P0155,P0153,Pallavi Ghosh,Recruiter,People,People operations,Delhi NCR,Individual contributor,Active,980000,980000,2020-06-12
+P0156,P0153,Priya Mukherjee,Recruiter,People,People operations,Delhi NCR,Individual contributor,Active,1360000,1360000,2022-03-07
+P0157,P0001,Nikhil Menon,Operations Director,Operations,Operations leadership,Mumbai,Head of team,Active,6020000,6020000,2026-03-27
+P0158,P0157,Aarav Pandey,Operations Manager,Operations,Logistics,Mumbai,Manager,Active,3410000,3410000,2020-05-09
+P0159,P0158,Myra Kulkarni,Logistics Coordinator,Operations,Logistics,Mumbai,Individual contributor,Active,1390000,1390000,2024-05-08
+P0160,P0158,Farhan Kulkarni,Procurement Specialist,Operations,Logistics,Mumbai,Individual contributor,Active,1290000,1290000,2025-07-20
+P0161,P0158,Rohan Mathew,Operations Analyst,Operations,Logistics,Mumbai,Individual contributor,Active,1620000,1620000,2023-11-10
+P0162,P0158,Ravi Chopra,Logistics Coordinator,Operations,Logistics,Mumbai,Individual contributor,Active,980000,980000,2021-01-13
+P0163,P0157,Gaurav Patel,Operations Manager,Operations,Procurement,Chennai,Manager,Active,2890000,2890000,2026-07-27
+P0164,P0163,Sneha Malhotra,Operations Analyst,Operations,Procurement,Chennai,Individual contributor,Active,1340000,1340000,2022-08-05
+P0165,P0163,Farhan Khan,Operations Analyst,Operations,Procurement,Chennai,Individual contributor,Active,1050000,1050000,2025-04-16
+P0166,P0163,Meera Ghosh,Logistics Coordinator,Operations,Procurement,Chennai,Individual contributor,Active,810000,810000,2026-04-08
+P0167,P0163,Nikhil Gupta,Logistics Coordinator,Operations,Procurement,Chennai,Individual contributor,Active,1050000,1050000,2019-02-19
+P0168,P0163,Riya Bhat,Logistics Coordinator,Operations,Procurement,Chennai,Individual contributor,Active,920000,920000,2025-10-30
+P0169,P0163,Open role - Operations Analyst,Operations Analyst,Operations,Procurement,Chennai,Individual contributor,Open role,0,950000,
+P0170,P0163,Kavya D'Souza,Logistics Coordinator,Operations,Procurement,Chennai,Individual contributor,Active,1790000,1790000,2024-11-24
+P0171,P0157,Pooja Sharma,Operations Manager,Operations,Facilities,Hyderabad,Manager,Active,3530000,3530000,2020-01-01
+P0172,P0171,Ravi Nair,Operations Analyst,Operations,Facilities,Hyderabad,Individual contributor,Active,1690000,1690000,2022-04-08
+P0173,P0171,Bhavna Pillai,Logistics Coordinator,Operations,Facilities,Hyderabad,Individual contributor,Active,1060000,1060000,2021-08-02
+P0174,P0171,Tarun Chopra,Procurement Specialist,Operations,Facilities,Hyderabad,Individual contributor,Active,1660000,1660000,2024-09-13
+P0175,P0171,Aadhya D'Souza,Operations Analyst,Operations,Facilities,Hyderabad,Individual contributor,Active,1550000,1550000,2018-01-24

@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  visual:
+    name: Build the custom visual
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: visual
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: visual/package-lock.json
+      - run: npm ci
+      - name: Type check
+        run: npx tsc --noEmit -p .
+      - name: Lint
+        run: npx eslint .
+      - name: Package
+        run: npx pbiviz package
+
+  report:
+    name: Check the Power BI project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install jsonschema referencing
+      - name: Sample data and report are up to date
+        run: |
+          python tools/make_sample_data.py
+          python tools/build_pbip.py
+          git diff --exit-code -- data powerbi
+      - name: Get Microsoft's report schemas
+        run: |
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/microsoft/json-schemas.git /tmp/json-schemas
+          git -C /tmp/json-schemas sparse-checkout set fabric/item/report
+          curl -sSfL -o /tmp/theme.json https://raw.githubusercontent.com/microsoft/powerbi-desktop-samples/main/Report%20Theme%20JSON%20Schema/reportThemeSchema-2.159.json
+      - name: Report structure, formatting, fields and layout
+        run: python tools/check_powerbi.py --schemas /tmp/json-schemas --theme-schema /tmp/theme.json

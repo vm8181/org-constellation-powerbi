@@ -1,0 +1,74 @@
+/// All measures, in display folders.
+table _Measures
+	lineageTag: a00a5c0e-8486-58d2-955b-3b944df002ce
+
+	/// People in post (open roles are not counted).
+	measure 'Headcount' = CALCULATE ( COUNTROWS ( People ), People[Status] <> "Open role" ) + 0
+		formatString: #,0
+		displayFolder: People
+		lineageTag: 417eb7fc-e28c-51d3-a6a1-6ecdd1fffe18
+
+	/// Vacancies: positions with a budget and nobody in them yet.
+	measure 'Open Roles' = CALCULATE ( COUNTROWS ( People ), People[Status] = "Open role" ) + 0
+		formatString: #,0
+		displayFolder: People
+		lineageTag: 80a23160-402b-5414-b36c-fdd35fc9fe69
+
+	/// People currently on leave.
+	measure 'On Leave' = CALCULATE ( COUNTROWS ( People ), People[Status] = "On leave" ) + 0
+		formatString: #,0
+		displayFolder: People
+		lineageTag: 3ac008c4-e9a6-5c53-a763-087b3ee6dd5d
+
+	/// Average number of direct reports per manager, for the people in view.
+	measure 'Avg Span of Control' = DIVIDE ( CALCULATE ( COUNTROWS ( People ), NOT ISBLANK ( People[ManagerID] ) ), DISTINCTCOUNTNOBLANK ( People[ManagerID] ) )
+		formatString: 0.0
+		displayFolder: People
+		lineageTag: 27bb5479-e3f5-5b65-b0e6-9a5036ac14b7
+
+	/// Yearly cost of the people in view, in rupees.
+	measure 'Staff Cost' = SUM ( People[AnnualCost] )
+		formatString: ₹#,0
+		displayFolder: Cost
+		lineageTag: eb721620-601c-52a2-8db7-f4e6fffff610
+
+	/// Staff Cost in crores of rupees (1 crore = 10 million).
+	measure 'Staff Cost Cr' = DIVIDE ( [Staff Cost], 10000000 )
+		formatString: #,0.00
+		displayFolder: Cost
+		lineageTag: 49d98cf1-aae9-5ed6-a1bc-1970989531c8
+
+	/// Yearly budget for the positions in view.
+	measure 'Budgeted Cost' = SUM ( People[BudgetedCost] )
+		formatString: ₹#,0
+		displayFolder: Cost
+		lineageTag: b981c5a4-3a92-57fe-8e91-ca09cc01ce5b
+
+	/// Budget not being spent because roles are open, in crores.
+	measure 'Unfilled Budget Cr' = DIVIDE ( [Budgeted Cost] - [Staff Cost], 10000000 )
+		formatString: #,0.00
+		displayFolder: Cost
+		lineageTag: 0769a000-ba57-5a79-9a4c-87e4e22c4991
+
+	/// One line describing what is in view; changes when you lasso or click people.
+	measure 'Selection Summary' =
+			VAR picked = ISFILTERED ( People[PersonID] ) || ISFILTERED ( People[Team] ) || ISFILTERED ( People[Location] )
+			VAR who = IF ( picked, "Selected: ", "Whole organisation: " )
+			RETURN who & FORMAT ( [Headcount], "#,0" ) & " people  ·  ₹" & FORMAT ( [Staff Cost Cr], "#,0.0" ) & " Cr a year  ·  "
+			    & FORMAT ( [Open Roles], "#,0" ) & IF ( [Open Roles] = 1, " open role", " open roles" )
+		displayFolder: Text
+		lineageTag: b3200083-d629-5ec5-8e19-fe02f5dc9ede
+
+	column Dummy
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 23a62e79-5d48-5f97-bf7d-c5422b20ce88
+		summarizeBy: none
+		sourceColumn: [Dummy]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = calculated
+		mode: import
+		source = ROW("Dummy", 0)

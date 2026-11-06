@@ -1,0 +1,276 @@
+{
+    "dataRoles": [
+        {
+            "displayName": "Person ID",
+            "name": "personId",
+            "kind": "Grouping",
+            "description": "One row per person or open role"
+        },
+        {
+            "displayName": "Manager ID",
+            "name": "managerId",
+            "kind": "Grouping",
+            "description": "The manager's Person ID; blank at the top of the org"
+        },
+        {
+            "displayName": "Name",
+            "name": "name",
+            "kind": "Grouping"
+        },
+        {
+            "displayName": "Title",
+            "name": "title",
+            "kind": "Grouping"
+        },
+        {
+            "displayName": "Team",
+            "name": "team",
+            "kind": "Grouping",
+            "description": "Colours the dots and cards"
+        },
+        {
+            "displayName": "Unit",
+            "name": "group",
+            "kind": "Grouping",
+            "description": "The team inside a department (for example Platform). Names the clusters and boxes."
+        },
+        {
+            "displayName": "Location",
+            "name": "location",
+            "kind": "Grouping",
+            "description": "Clusters in constellation view"
+        },
+        {
+            "displayName": "Status",
+            "name": "status",
+            "kind": "Grouping",
+            "description": "'On leave' and 'Open role' are drawn differently"
+        },
+        {
+            "displayName": "Start date",
+            "name": "startDate",
+            "kind": "Grouping",
+            "description": "Shows how long someone has been with the company in the tooltip"
+        },
+        {
+            "displayName": "Size",
+            "name": "size",
+            "kind": "Measure",
+            "description": "Dot size, for example annual cost"
+        },
+        {
+            "displayName": "Budget",
+            "name": "budget",
+            "kind": "Measure",
+            "description": "Yearly budget for the position; shown for open roles"
+        },
+        {
+            "displayName": "Tooltips",
+            "name": "tooltips",
+            "kind": "Measure"
+        }
+    ],
+    "dataViewMappings": [
+        {
+            "conditions": [
+                {
+                    "personId": {
+                        "max": 1
+                    },
+                    "managerId": {
+                        "max": 1
+                    },
+                    "name": {
+                        "max": 1
+                    },
+                    "title": {
+                        "max": 1
+                    },
+                    "team": {
+                        "max": 1
+                    },
+                    "location": {
+                        "max": 1
+                    },
+                    "status": {
+                        "max": 1
+                    },
+                    "size": {
+                        "max": 1
+                    },
+                    "group": {
+                        "max": 1
+                    },
+                    "startDate": {
+                        "max": 1
+                    },
+                    "budget": {
+                        "max": 1
+                    }
+                }
+            ],
+            "categorical": {
+                "categories": {
+                    "select": [
+                        {
+                            "bind": {
+                                "to": "personId"
+                            }
+                        },
+                        {
+                            "bind": {
+                                "to": "managerId"
+                            }
+                        },
+                        {
+                            "bind": {
+                                "to": "name"
+                            }
+                        },
+                        {
+                            "bind": {
+                                "to": "title"
+                            }
+                        },
+                        {
+                            "bind": {
+                                "to": "team"
+                            }
+                        },
+                        {
+                            "bind": {
+                                "to": "group"
+                            }
+                        },
+                        {
+                            "bind": {
+                                "to": "location"
+                            }
+                        },
+                        {
+                            "bind": {
+                                "to": "status"
+                            }
+                        },
+                        {
+                            "bind": {
+                                "to": "startDate"
+                            }
+                        }
+                    ],
+                    "dataReductionAlgorithm": {
+                        "top": {
+                            "count": 5000
+                        }
+                    }
+                },
+                "values": {
+                    "select": [
+                        {
+                            "bind": {
+                                "to": "size"
+                            }
+                        },
+                        {
+                            "bind": {
+                                "to": "budget"
+                            }
+                        },
+                        {
+                            "bind": {
+                                "to": "tooltips"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "objects": {
+        "view": {
+            "properties": {
+                "defaultView": {
+                    "type": {
+                        "enumeration": [
+                            {
+                                "value": "constellation",
+                                "displayName": "Constellation"
+                            },
+                            {
+                                "value": "orgChart",
+                                "displayName": "Org chart"
+                            }
+                        ]
+                    }
+                },
+                "clusterBy": {
+                    "type": {
+                        "enumeration": [
+                            {
+                                "value": "reporting",
+                                "displayName": "Reporting line"
+                            },
+                            {
+                                "value": "location",
+                                "displayName": "Location"
+                            },
+                            {
+                                "value": "team",
+                                "displayName": "Team"
+                            }
+                        ]
+                    }
+                },
+                "showClusterLabels": {
+                    "type": {
+                        "bool": true
+                    }
+                },
+                "showLinks": {
+                    "type": {
+                        "bool": true
+                    }
+                },
+                "showToolbar": {
+                    "type": {
+                        "bool": true
+                    }
+                }
+            }
+        },
+        "dots": {
+            "properties": {
+                "dotSize": {
+                    "type": {
+                        "numeric": true
+                    }
+                },
+                "labelSize": {
+                    "type": {
+                        "formatting": {
+                            "fontSize": true
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "sorting": {
+        "default": {}
+    },
+    "supportsHighlight": true,
+    "supportsMultiVisualSelection": true,
+    "supportsKeyboardFocus": true,
+    "supportsLandingPage": true,
+    "supportsEmptyDataView": true,
+    "tooltips": {
+        "supportedTypes": {
+            "default": true,
+            "canvas": true
+        },
+        "roles": [
+            "tooltips"
+        ]
+    },
+    "privileges": []
+}

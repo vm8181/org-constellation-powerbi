@@ -1,0 +1,346 @@
+// Org Constellation styles. Colours come from CSS variables so high contrast mode can swap them.
+.oc-root {
+    --oc-bg: #ffffff;
+    --oc-text: #252423;
+    --oc-muted: #605e5c;
+    --oc-line: #c8c6c4;
+    --oc-faint: #edebe9;
+    --oc-accent: #118dff;
+    --oc-font-size: 11px;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: "Segoe UI", wf_segoe-ui_normal, helvetica, arial, sans-serif;
+    font-size: var(--oc-font-size);
+    color: var(--oc-text);
+    background: var(--oc-bg);
+    user-select: none;
+
+    &.oc-high-contrast {
+        --oc-bg: Canvas;
+        --oc-text: CanvasText;
+        --oc-muted: CanvasText;
+        --oc-line: CanvasText;
+        --oc-faint: Canvas;
+        --oc-accent: Highlight;
+    }
+
+    button {
+        font: inherit;
+        color: var(--oc-text);
+        background: transparent;
+        border: 1px solid var(--oc-line);
+        border-radius: 6px;
+        padding: 3px 10px;
+        cursor: pointer;
+        &:hover { background: var(--oc-faint); }
+        &:focus-visible { outline: 2px solid var(--oc-accent); outline-offset: 1px; }
+        &.on { background: var(--oc-text); color: var(--oc-bg); border-color: var(--oc-text); }
+    }
+}
+
+.oc-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 6px 6px;
+}
+
+.oc-seg {
+    display: inline-flex;
+    button { border-radius: 0; margin-left: -1px; }
+    button:first-child { border-radius: 6px 0 0 6px; margin-left: 0; }
+    button:last-child { border-radius: 0 6px 6px 0; }
+}
+
+.oc-search {
+    flex: 1 1 140px;
+    min-width: 100px;
+    max-width: 260px;
+    font: inherit;
+    color: var(--oc-text);
+    background: var(--oc-bg);
+    border: 1px solid var(--oc-line);
+    border-radius: 6px;
+    padding: 4px 8px;
+    &:focus { outline: 2px solid var(--oc-accent); outline-offset: 0; }
+}
+
+.oc-tools { margin-left: auto; display: inline-flex; gap: 6px; }
+
+.oc-pill {
+    display: none;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--oc-accent);
+    color: #fff;
+    font-weight: 600;
+    white-space: nowrap;
+    &.on { display: inline-block; }
+}
+
+.oc-zoom {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px;
+    border: 1px solid var(--oc-line);
+    border-radius: 8px;
+    background: var(--oc-bg);
+    button { border: none; padding: 1px 8px; font-size: 1.2em; line-height: 1.2; }
+    .oc-zoom-pct { min-width: 40px; text-align: center; color: var(--oc-muted); }
+}
+
+.oc-chips {
+    display: flex;
+    flex-wrap: wrap;           // wrap onto a second line instead of showing a scroll bar
+    overflow: hidden;
+    gap: 6px;
+    padding: 0 6px 6px;
+}
+
+.oc-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 999px !important;
+    padding: 1px 8px !important;
+    font-size: 0.95em;
+    .oc-chip-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+    .oc-chip-count { color: var(--oc-muted); }
+    flex: 0 0 auto;
+    &.on { background: var(--oc-faint) !important; color: var(--oc-text) !important; border-color: var(--oc-text) !important; font-weight: 600; }
+    &.dim { opacity: 0.45; }
+}
+
+.oc-stage {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+    border-top: 1px solid var(--oc-faint);
+    border-bottom: 1px solid var(--oc-faint);
+    cursor: grab;
+    &.oc-lasso-mode { cursor: crosshair; }
+}
+
+.oc-svg { display: block; width: 100%; height: 100%; touch-action: none; }
+
+.oc-footer {
+    padding: 4px 6px 0;
+    color: var(--oc-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.oc-landing {
+    margin: auto;
+    max-width: 320px;
+    text-align: center;
+    color: var(--oc-muted);
+    .oc-landing-title { font-size: 16px; font-weight: 600; color: var(--oc-text); margin-bottom: 6px; }
+}
+
+.oc-lasso {
+    fill: rgba(17, 141, 255, 0.08);
+    stroke: var(--oc-accent);
+    stroke-width: 1.5;
+    stroke-dasharray: 5 4;
+    pointer-events: none;
+}
+
+// ---------------------------------------------------------------- constellation
+.oc-halos.hidden { display: none; }
+.oc-halos circle { fill: var(--oc-faint); fill-opacity: 0.25; stroke: none; }
+.oc-halos.net circle { fill: var(--oc-c); fill-opacity: 0.07; }
+.oc-links line { stroke-width: 0.9; stroke-opacity: 0.35; transition: opacity 0.2s; &.dim { opacity: 0.2; } }
+.oc-net-links line { stroke: var(--oc-line); stroke-width: 1.3; }
+
+.oc-node {
+    cursor: pointer;
+    transition: opacity 0.2s;
+    .oc-dot { fill: var(--oc-c); fill-opacity: 0.28; stroke: var(--oc-c); stroke-width: 1.3; }
+    .oc-ini { fill: var(--oc-c); font-weight: 600; text-anchor: middle; pointer-events: none; }
+    &.mgr .oc-dot { fill-opacity: 0.55; stroke-width: 1.8; }
+    &.leave .oc-dot { fill: var(--oc-bg); stroke-width: 2; }
+    &.open .oc-dot { fill: var(--oc-bg); stroke-dasharray: 2 2; stroke-width: 1.4; }
+    &.dim { opacity: 0.15; }
+    &.sel .oc-dot { fill-opacity: 0.95; }
+    &.sel .oc-ini { fill: #fff; }
+    &.match .oc-dot { stroke: var(--oc-accent); stroke-width: 3; }
+    &:focus { outline: none; .oc-dot { stroke: var(--oc-accent); stroke-width: 3; } }
+}
+// in the reporting-line view, people are light avatars with initials; team leads and managers stand out
+.oc-layer:not(.oc-org) .oc-dots .oc-node {
+    .oc-ini { opacity: 1; }
+}
+.oc-halos.net ~ .oc-dots .oc-node {
+    .oc-dot { fill: var(--oc-bg); fill-opacity: 1; stroke-width: 1.4; }
+    &.mgr .oc-dot { fill: var(--oc-c); fill-opacity: 0.18; stroke-width: 2; }
+    &.top .oc-dot { fill: var(--oc-c); fill-opacity: 1; }
+    &.top .oc-ini { fill: #fff; }
+    &.sel .oc-dot { fill: var(--oc-c); fill-opacity: 1; }
+    &.sel .oc-ini { fill: #fff; }
+}
+.oc-zoomed-out .oc-ini { display: none; }
+
+.oc-names text {
+    fill: var(--oc-muted);
+    font-size: calc(var(--oc-font-size) * 0.85 * var(--oc-label-scale, 1));
+    pointer-events: none;
+    paint-order: stroke;
+    stroke: var(--oc-bg);
+    stroke-width: 3px;
+    transition: opacity 0.2s;
+    &.dim { opacity: 0.15; }
+}
+.oc-zoomed-out .oc-names { display: none; }
+
+.oc-cluster-labels text {
+    pointer-events: none;
+    paint-order: stroke;
+    stroke: var(--oc-bg);
+    stroke-width: 4px;
+    font-size: calc(var(--oc-font-size) * var(--oc-label-scale, 1));
+    .oc-cl-name { fill: var(--oc-text); font-weight: 600; font-size: 1.15em; }
+    .oc-cl-count { fill: var(--oc-muted); }
+}
+.oc-cluster-labels.net text.hub .oc-cl-name { font-size: 1.05em; }
+
+// ---------------------------------------------------------------- org chart
+.oc-crumbs {
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    z-index: 2;
+    button { background: var(--oc-bg); padding: 2px 8px; }
+    button.crumb + button.crumb::before { content: "› "; color: var(--oc-muted); }
+    .oc-only { align-self: center; margin-left: 8px; padding: 2px 8px; border-radius: 999px; background: var(--oc-accent); color: #fff; font-weight: 600; }
+    .oc-only-btn { font-weight: 600; }
+    button.on { background: var(--oc-faint); color: var(--oc-text); border-color: var(--oc-line); font-weight: 600; }
+}
+
+.oc-edge { fill: none; stroke: var(--oc-line); stroke-width: 1.2; }
+.oc-empty { fill: var(--oc-muted); }
+
+.oc-box {
+    transition: opacity 0.2s;
+    rect { fill: var(--oc-c); fill-opacity: 0.06; stroke: var(--oc-c); stroke-opacity: 0.35; }
+    .oc-box-head { cursor: pointer; }
+    .oc-box-head circle { fill: var(--oc-c); }
+    .oc-box-head text { fill: var(--oc-text); font-weight: 600; }
+    .oc-box-count { fill: var(--oc-muted); font-weight: 400; }
+    .oc-box-open { fill: var(--oc-muted); }
+    &.dim { opacity: 0.35; }
+}
+
+.oc-card {
+    cursor: pointer;
+    transition: opacity 0.2s;
+    .oc-card-bg { fill: var(--oc-bg); stroke: var(--oc-line); stroke-width: 1; }
+    .oc-avatar circle { fill: var(--oc-c); fill-opacity: 0.16; stroke: var(--oc-c); stroke-width: 1.4; }
+    .oc-avatar text { fill: var(--oc-c); font-weight: 700; text-anchor: middle; }
+    .oc-card-name { fill: var(--oc-text); font-weight: 600; }
+    .oc-card-title { fill: var(--oc-muted); font-size: 0.92em; }
+    .oc-card-count { fill: var(--oc-muted); }
+    .oc-card-tag { fill: var(--oc-muted); font-size: 0.85em; font-style: italic; }
+    &.focus .oc-card-bg { stroke: var(--oc-c); stroke-width: 1.5; }
+    &.cell .oc-card-name { font-weight: 600; font-size: 0.95em; }
+    &.cell .oc-card-title { font-size: 0.85em; }
+    &.open .oc-card-bg { stroke-dasharray: 4 3; fill: transparent; }
+    &.open .oc-avatar circle { fill: transparent; stroke-dasharray: 2 2; }
+    &.open .oc-card-name { fill: var(--oc-muted); font-style: italic; font-weight: 400; }
+    &.leave .oc-avatar circle { fill: var(--oc-bg); stroke-width: 2; }
+    &:hover .oc-card-bg { stroke: var(--oc-c); }
+    &.dim { opacity: 0.2; }
+    &.sel .oc-card-bg { stroke: var(--oc-c); stroke-width: 2; }
+    &.sel .oc-avatar circle { fill-opacity: 1; }
+    &.sel .oc-avatar text { fill: #fff; }
+    &.match .oc-card-bg { stroke: var(--oc-accent); stroke-width: 2.5; }
+    &:focus { outline: none; .oc-card-bg { stroke: var(--oc-accent); stroke-width: 2; } }
+}
+
+.oc-open-btn {
+    cursor: pointer;
+    rect { fill: var(--oc-faint); }
+    text { fill: var(--oc-text); font-size: 0.9em; font-weight: 600; }
+    &:hover rect { fill: var(--oc-line); }
+}
+
+// ---------------------------------------------------------------- footer key hints
+.oc-footer {
+    kbd {
+        font: inherit;
+        font-size: 0.92em;
+        font-weight: 600;
+        color: var(--oc-text);
+        background: var(--oc-faint);
+        border-radius: 4px;
+        padding: 0 5px;
+        margin: 0 4px 0 10px;
+    }
+    .oc-count { font-weight: 600; color: var(--oc-text); }
+}
+
+// ---------------------------------------------------------------- tooltip card
+.oc-tip {
+    position: absolute;
+    z-index: 10;
+    width: 300px;
+    pointer-events: none;
+    background: var(--oc-bg);
+    border-radius: 10px;
+    border-top: 4px solid var(--oc-c);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 1.35;
+
+    .oc-tip-top { display: flex; gap: 10px; padding: 11px 13px 9px; }
+    .oc-tip-av {
+        flex: 0 0 38px; height: 38px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-weight: 700; font-size: 13px; color: var(--oc-c);
+        background: color-mix(in srgb, var(--oc-c) 15%, var(--oc-bg));
+        border: 2px solid var(--oc-c);
+        &.open { border-style: dashed; background: var(--oc-bg); color: var(--oc-muted); }
+    }
+    .oc-tip-name { font-weight: 700; font-size: 13.5px; color: var(--oc-text); }
+    .oc-tip-sub { color: var(--oc-muted); margin-top: 1px; }
+    .oc-tip-chips { display: flex; flex-wrap: wrap; gap: 5px; padding: 0 13px 10px; }
+    .oc-tip-chip {
+        display: inline-flex; align-items: center; gap: 5px;
+        padding: 1px 8px; border-radius: 999px; font-size: 11px;
+        background: var(--oc-faint); color: var(--oc-text);
+        i { width: 7px; height: 7px; border-radius: 50%; background: var(--oc-c); display: inline-block; }
+        &.ok { background: #e7f4ea; color: #1b6b33; }
+        &.warn { background: #fdf0e0; color: #8a4b00; }
+        &.hire { background: #e8f1fb; color: #0b5394; }
+    }
+    .oc-tip-sec { border-top: 1px solid var(--oc-faint); padding: 8px 13px; }
+    .oc-tip-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .oc-tip-k { font-size: 10px; color: var(--oc-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .oc-tip-v { font-weight: 600; font-size: 13px; color: var(--oc-text); margin-top: 1px; }
+    .oc-tip-note { font-size: 11px; color: var(--oc-muted); margin-top: 4px; }
+    .oc-tip-bar {
+        position: relative; height: 6px; margin-top: 7px; border-radius: 3px; background: var(--oc-faint);
+        b { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 3px; background: var(--oc-c); }
+        s { position: absolute; top: -3px; width: 2px; height: 12px; background: var(--oc-text); }
+    }
+    .oc-tip-rows div { display: flex; justify-content: space-between; gap: 12px; padding: 1px 0; color: var(--oc-muted); b { color: var(--oc-text); } }
+    .oc-tip-foot {
+        padding: 6px 13px; font-size: 10.5px; color: var(--oc-muted);
+        background: color-mix(in srgb, var(--oc-faint) 45%, var(--oc-bg)); border-top: 1px solid var(--oc-faint);
+        kbd { font: inherit; font-weight: 600; color: var(--oc-text); background: var(--oc-faint); border-radius: 4px; padding: 0 4px; }
+    }
+}
+.oc-high-contrast .oc-tip { border: 1px solid CanvasText; }
