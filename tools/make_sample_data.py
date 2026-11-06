@@ -119,7 +119,7 @@ for team, (head_title, homes, groups) in TEAMS.items():
 
 OUT.parent.mkdir(parents=True, exist_ok=True)
 with OUT.open("w", newline="", encoding="utf-8") as f:
-    w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+    w = csv.DictWriter(f, fieldnames=list(rows[0].keys()), lineterminator="\n")  # same bytes on Windows and Linux
     w.writeheader()
     w.writerows(rows)
 

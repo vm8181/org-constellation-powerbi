@@ -11,3 +11,9 @@ visual/certs/
 # Python
 __pycache__/
 *.pyc
+
+# Files Power BI Desktop adds when it opens the project; the report is built from tools/build_pbip.py
+**/.platform
+**/.pbi/editorSettings.json
+**/diagramLayout.json
+**/definition/cultures/

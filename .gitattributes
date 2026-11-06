@@ -1,0 +1,7 @@
+# Store text files with LF line endings, whatever the computer, so the
+# "report is regenerated exactly" check in CI gives the same answer everywhere.
+* text=auto eol=lf
+*.png binary
+*.gif binary
+*.mp4 binary
+*.pbiviz binary
