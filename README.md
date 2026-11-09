@@ -86,7 +86,7 @@ visual/src/*.ts  ──►  pbiviz package ──►  visual/dist/*.pbiviz  ─�
 | `tools/make_sample_data.py` | Makes the fictional organisation (fixed seed, so it is the same every run) |
 | `tools/build_pbip.py` | Writes the whole Power BI project: the model in TMDL, the report page in PBIR, and the visual packed inside it |
 | `tools/check_powerbi.py` | Checks the report files against Microsoft's published schemas, every formatting name, every field reference and the page layout |
-| `.github/workflows/ci.yml` | On every push: type-checks, lints and packages the visual; confirms the data and report are regenerated exactly; runs the report checks |
+| `.github/workflows/ci.yml` | On every push: type-checks, lints and packages the visual; confirms the sample data matches its generator; checks the report files against Microsoft's schemas |
 
 ## Design decisions
 

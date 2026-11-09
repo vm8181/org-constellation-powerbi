@@ -35,11 +35,12 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install jsonschema referencing
-      - name: Sample data and report are up to date
+      # The report is designed in Power BI Desktop, which reformats the files on every save,
+      # so only the sample data is checked against its generator.
+      - name: Sample data is up to date
         run: |
           python tools/make_sample_data.py
-          python tools/build_pbip.py
-          git diff --exit-code -- data powerbi
+          git diff --exit-code -- data
       - name: Get Microsoft's report schemas
         run: |
           git clone --depth 1 --filter=blob:none --sparse https://github.com/microsoft/json-schemas.git /tmp/json-schemas

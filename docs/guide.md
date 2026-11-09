@@ -75,7 +75,7 @@ The data is a fictional company of 175 positions across 8 teams and 7 locations,
 Every push to GitHub runs three things:
 
 1. **The visual builds.** TypeScript type check, lint, and `pbiviz package`.
-2. **The report is reproducible.** The sample data and the whole Power BI project are regenerated from code, and the run fails if anything differs from what's committed.
+2. **The sample data is reproducible.** The fictional organisation is regenerated from code, and the run fails if it differs from what's committed. (The report itself is polished in Power BI Desktop, which reformats its files on every save, so it isn't compared with `tools/build_pbip.py`.)
 3. **The report files are valid.** Every report file is checked against Microsoft's published schemas, every formatting setting against the theme schema (and, for the custom visual, against its own capabilities), every field against the model, and the layout for overlaps.
 
 During development the visual was also run in a browser test harness that imitates Power BI, to check both views, search, the lasso, cross-filter calls, highlights, tooltips and the empty state.
