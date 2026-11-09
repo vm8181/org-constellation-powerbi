@@ -158,7 +158,7 @@
 // ---------------------------------------------------------------- constellation
 .oc-halos.hidden { display: none; }
 .oc-halos circle { fill: var(--oc-faint); fill-opacity: 0.25; stroke: none; }
-.oc-halos.net circle { fill: var(--oc-c); fill-opacity: 0.07; }
+.oc-halos.net circle { fill: var(--oc-c); fill-opacity: 0.16; filter: blur(7px); }
 .oc-links line { stroke-width: 0.9; stroke-opacity: 0.35; transition: opacity 0.2s; &.dim { opacity: 0.2; } }
 .oc-net-links line { stroke: var(--oc-line); stroke-width: 1.3; }
 
@@ -189,6 +189,24 @@
     &.sel .oc-ini { fill: #fff; }
 }
 .oc-zoomed-out .oc-ini { display: none; }
+
+// illustrated faces: shirt in the team colour, ring around the face
+.oc-face {
+    pointer-events: none;
+    .oc-shirt { fill: var(--oc-c); }
+    .oc-eye { fill: #2A2320; }
+    .oc-smile { fill: none; stroke: #7A4A3A; stroke-width: 0.05; stroke-linecap: round; }
+}
+.oc-halos.net ~ .oc-dots .oc-node {
+    .oc-dot { fill: #fff; fill-opacity: 1; stroke-width: 1.6; }
+    &.mgr .oc-dot { fill: #fff; stroke-width: 2.4; }
+    &.top .oc-dot { fill: #fff; stroke-width: 3; }
+    &.sel .oc-dot { fill: #fff; stroke-width: 3.2; }
+}
+.oc-node.leave .oc-face { opacity: 0.45; filter: grayscale(1); }
+.oc-card.leave .oc-face { opacity: 0.45; filter: grayscale(1); }
+.oc-card .oc-avatar > circle { fill: #fff; fill-opacity: 1; }
+.oc-card.sel .oc-avatar > circle { stroke-width: 2.6; }
 
 .oc-names text {
     fill: var(--oc-muted);
@@ -247,7 +265,7 @@
     cursor: pointer;
     transition: opacity 0.2s;
     .oc-card-bg { fill: var(--oc-bg); stroke: var(--oc-line); stroke-width: 1; }
-    .oc-avatar circle { fill: var(--oc-c); fill-opacity: 0.16; stroke: var(--oc-c); stroke-width: 1.4; }
+    .oc-avatar > circle { fill: var(--oc-c); fill-opacity: 0.16; stroke: var(--oc-c); stroke-width: 1.4; }
     .oc-avatar text { fill: var(--oc-c); font-weight: 700; text-anchor: middle; }
     .oc-card-name { fill: var(--oc-text); font-weight: 600; }
     .oc-card-title { fill: var(--oc-muted); font-size: 0.92em; }
@@ -257,13 +275,13 @@
     &.cell .oc-card-name { font-weight: 600; font-size: 0.95em; }
     &.cell .oc-card-title { font-size: 0.85em; }
     &.open .oc-card-bg { stroke-dasharray: 4 3; fill: transparent; }
-    &.open .oc-avatar circle { fill: transparent; stroke-dasharray: 2 2; }
+    &.open .oc-avatar > circle { fill: transparent; stroke-dasharray: 2 2; }
     &.open .oc-card-name { fill: var(--oc-muted); font-style: italic; font-weight: 400; }
-    &.leave .oc-avatar circle { fill: var(--oc-bg); stroke-width: 2; }
+    &.leave .oc-avatar > circle { fill: var(--oc-bg); stroke-width: 2; }
     &:hover .oc-card-bg { stroke: var(--oc-c); }
     &.dim { opacity: 0.2; }
     &.sel .oc-card-bg { stroke: var(--oc-c); stroke-width: 2; }
-    &.sel .oc-avatar circle { fill-opacity: 1; }
+    &.sel .oc-avatar > circle { fill-opacity: 1; }
     &.sel .oc-avatar text { fill: #fff; }
     &.match .oc-card-bg { stroke: var(--oc-accent); stroke-width: 2.5; }
     &:focus { outline: none; .oc-card-bg { stroke: var(--oc-accent); stroke-width: 2; } }

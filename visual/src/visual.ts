@@ -23,6 +23,7 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
 
 import { VisualSettings } from "./settings";
 import { OrgData, Person, buildOrg, hasRequiredFields, subtree, initials, inr } from "./model";
+import { appendFaces } from "./avatar";
 import { Cluster, DeptCard, DeptBox, Blob, layoutConstellation, layoutNetwork, layoutDept, dotRadius } from "./layout";
 
 type Div = Selection<HTMLDivElement, unknown, null, undefined>;
@@ -66,6 +67,7 @@ export class Visual implements IVisual {
     /** when the org chart was opened with a selection: show only these people (and their managers) */
     private orgOnly: Set<string> | null = null;
     private stageSize = "";
+    private faceClip = "";
     private crumbs: Div;
     private tip: Div;
     private transforms: Record<View, ZoomTransform | null> = { constellation: null, orgChart: null };
@@ -102,6 +104,9 @@ export class Visual implements IVisual {
         this.zoomLabel = zc.append("span").classed("oc-zoom-pct", true).text("100%");
         zc.append("button").attr("title", "Zoom in").attr("aria-label", "Zoom in").text("+")
             .on("click", () => this.svg.transition().duration(200).call(this.zoomer.scaleBy, 1.3));
+        // one round clip for every face (faces are drawn in a unit circle and scaled)
+        this.faceClip = "oc-face-" + Array.from(window.crypto.getRandomValues(new Uint8Array(4)), b => b.toString(16)).join("");
+        this.svg.append("defs").append("clipPath").attr("id", this.faceClip).append("circle").attr("r", 0.9);
         this.layer = this.svg.append("g").classed("oc-layer", true);
         this.lassoPath = this.svg.append("path").classed("oc-lasso", true);
 
@@ -369,10 +374,10 @@ export class Visual implements IVisual {
             .attr("aria-label", d => `${d.name}, ${d.title}, ${d.team}`)
             .style("--oc-c", d => d.color);
         node.append("circle").classed("oc-dot", true).attr("r", d => d.r);
-        if (initialsOn) {
-            node.filter(d => !d.isOpenRole).append("text").classed("oc-ini", true)
-                .attr("dy", "0.35em").attr("font-size", d => d.r * 0.78).text(d => initials(d.name));
-        }
+        // an illustrated face for each person (open roles stay an empty dashed circle)
+        const faces = node.filter(d => !d.isOpenRole).append("g").attr("transform", d => `scale(${d.r})`);
+        appendFaces(faces, d => d.id, this.faceClip);
+        void initialsOn;
         this.bindPointer(node, d => [d]);
     }
 
@@ -457,7 +462,8 @@ export class Visual implements IVisual {
         card.append("rect").classed("oc-card-bg", true).attr("width", d => d.w).attr("height", d => d.h).attr("rx", d => d.kind === "cell" ? 7 : 9);
         const av = card.append("g").classed("oc-avatar", true).attr("transform", d => `translate(${d.h / 2},${d.h / 2})`);
         av.append("circle").attr("r", d => d.kind === "cell" ? 12 : 16);
-        av.append("text").attr("dy", "0.35em").attr("font-size", d => d.kind === "cell" ? 9 : 11).text(d => initials(d.p.name));
+        const cardFaces = av.filter(d => !d.p.isOpenRole).append("g").attr("transform", d => `scale(${d.kind === "cell" ? 12 : 16})`);
+        appendFaces(cardFaces, d => d.p.id, this.faceClip);
         card.append("text").classed("oc-card-name", true)
             .attr("x", d => d.h + 2).attr("y", d => d.kind === "cell" ? 16 : 22)
             .text(d => trim(d.p.isOpenRole ? "Open role" : d.p.name, d.kind === "cell" ? 18 : 22));

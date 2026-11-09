@@ -37,7 +37,7 @@ Draw around people with the **lasso** and the rest of the report page filters to
 | Selection to org chart | Select people in the constellation, then switch to Org chart: it opens on their common manager and shows only them (and the managers above them). **Show everyone** brings the rest back |
 | Reporting line | In the org chart, clicking a manager selects everyone under them; clicking a team box selects the team |
 | Cross-filtering | Selections filter every other visual on the page; selections in other visuals highlight people here |
-| Status | People on leave are hollow dots; open roles are dashed |
+| People | Each person is a small illustrated face, made from their ID so it never changes; the shirt is the team colour. People on leave are faded; open roles are an empty dashed circle |
 | Size | Dot size follows a measure, for example annual cost |
 | Tooltip card | Who the person is and who they report to, team and location chips, status, team size and cost for managers, cost compared with the average for the same title, time with the company, and the budget of an open role. Rupee amounts in lakh and crore |
 | Power BI behaviour | Right-click menu, keyboard focus, bookmarks, high contrast mode and an "add fields" message when empty |
