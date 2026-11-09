@@ -55,10 +55,32 @@
     button:last-child { border-radius: 0 6px 6px 0; }
 }
 
-.oc-search {
+.oc-search-wrap {
+    position: relative;
     flex: 1 1 140px;
     min-width: 100px;
     max-width: 260px;
+    display: flex;
+}
+.oc-results {
+    position: absolute; z-index: 30; top: calc(100% + 4px); left: 0;
+    width: max(100%, 260px); max-height: 320px; overflow-y: auto;
+    background: var(--oc-bg); border: 1px solid var(--oc-line); border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.14); padding: 4px; font-size: 12px;
+    .oc-result-count, .oc-result-empty { padding: 5px 8px 4px; color: var(--oc-muted); font-size: 11px; }
+    .oc-result-empty { padding: 8px; }
+    .oc-result {
+        display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 6px; cursor: pointer;
+        i { flex: 0 0 8px; height: 8px; border-radius: 50%; background: var(--oc-c); }
+        b { display: block; font-weight: 600; color: var(--oc-text); }
+        span { display: block; color: var(--oc-muted); font-size: 11px; }
+        &:hover, &.active { background: var(--oc-faint); }
+        &.active { box-shadow: inset 2px 0 0 var(--oc-accent); }
+    }
+}
+.oc-search {
+    flex: 1 1 auto;
+    width: 100%;
     font: inherit;
     color: var(--oc-text);
     background: var(--oc-bg);
@@ -159,6 +181,7 @@
 .oc-halos.hidden { display: none; }
 .oc-halos circle { fill: var(--oc-faint); fill-opacity: 0.25; stroke: none; }
 .oc-halos.net circle { fill: var(--oc-c); fill-opacity: 0.16; filter: blur(7px); }
+.oc-halos.net circle { transition: opacity 0.2s; &.dim { opacity: 0.12; } }
 .oc-links line { stroke-width: 0.9; stroke-opacity: 0.35; transition: opacity 0.2s; &.dim { opacity: 0.2; } }
 .oc-net-links line { stroke: var(--oc-line); stroke-width: 1.3; }
 
@@ -173,7 +196,8 @@
     &.dim { opacity: 0.15; }
     &.sel .oc-dot { fill-opacity: 0.95; }
     &.sel .oc-ini { fill: #fff; }
-    &.match .oc-dot { stroke: var(--oc-accent); stroke-width: 3; }
+    &.match .oc-dot { stroke: var(--oc-accent); stroke-width: 3.5; }
+    &.match { opacity: 1; }
     &:focus { outline: none; .oc-dot { stroke: var(--oc-accent); stroke-width: 3; } }
 }
 // in the reporting-line view, people are light avatars with initials; team leads and managers stand out
@@ -330,6 +354,9 @@
         font-weight: 700; font-size: 13px; color: var(--oc-c);
         background: color-mix(in srgb, var(--oc-c) 15%, var(--oc-bg));
         border: 2px solid var(--oc-c);
+        overflow: hidden;
+        &:not(.open) { background: #fff; }
+        svg { display: block; }
         &.open { border-style: dashed; background: var(--oc-bg); color: var(--oc-muted); }
     }
     .oc-tip-name { font-weight: 700; font-size: 13.5px; color: var(--oc-text); }
@@ -362,3 +389,13 @@
     }
 }
 .oc-high-contrast .oc-tip { border: 1px solid CanvasText; }
+
+// name tags on search matches; they keep a readable size at any zoom
+.oc-match-tags {
+    pointer-events: none;
+    .oc-tag-inner { transform: scale(var(--oc-label-scale, 1)); }
+    text { font-size: 10px; font-weight: 600; fill: var(--oc-text); }
+    rect { fill: var(--oc-bg); stroke: var(--oc-line); stroke-width: 1; }
+    .current text { fill: #fff; }
+    .current rect { fill: var(--oc-accent); stroke: none; }
+}

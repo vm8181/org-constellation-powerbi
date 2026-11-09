@@ -15,7 +15,7 @@ Draw around people with the **lasso** and the rest of the report page filters to
 
 ![Lasso a team, the view moves in, and the org chart opens on just those people](docs/images/demo.gif)
 
-▶ **[Watch the full 1-minute demo](docs/video/org-constellation-demo.mp4)** (MP4, no sound)
+▶ **[Watch the 1-minute demo in Power BI Desktop](docs/video/org-constellation-demo.mp4)** (MP4)
 
 | Constellation, by reporting line | Lasso: select a group of teams |
 | --- | --- |
@@ -31,7 +31,7 @@ Draw around people with the **lasso** and the rest of the report page filters to
 | --- | --- |
 | Two views | Constellation and org chart, switched from the visual's toolbar |
 | Three groupings | Reporting line (default), location or team; the format pane sets the default |
-| Search | Type a name: matches are ringed and the view zooms to the first one. In the org chart, it opens the chart that contains the person |
+| Search | Type the start of a first or last name: a list shows who matches (name, title, team). Everyone else fades, matches get a ring and a name tag, and the view moves to the chosen person. Arrow keys and Enter pick from the list, Esc clears. In the org chart, it opens the chart that contains the person |
 | Team chips | Constellation: click a team to fade every other team. Org chart: opens that team's chart |
 | Lasso | Shift + drag (or the Lasso button) to draw around people; Ctrl adds to the selection. The view moves in a little on the people you picked; **Fit** shows everyone again |
 | Selection to org chart | Select people in the constellation, then switch to Org chart: it opens on their common manager and shows only them (and the managers above them). **Show everyone** brings the rest back |

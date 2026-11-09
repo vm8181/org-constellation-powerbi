@@ -22,7 +22,7 @@ import IVisualEventService = powerbi.extensibility.IVisualEventService;
 import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
 
 import { VisualSettings } from "./settings";
-import { OrgData, Person, buildOrg, hasRequiredFields, subtree, initials, inr } from "./model";
+import { OrgData, Person, buildOrg, hasRequiredFields, subtree, inr } from "./model";
 import { appendFaces } from "./avatar";
 import { Cluster, DeptCard, DeptBox, Blob, layoutConstellation, layoutNetwork, layoutDept, dotRadius } from "./layout";
 
@@ -62,6 +62,9 @@ export class Visual implements IVisual {
     private selected = new Set<string>();
     private focusTeam: string | null = null;
     private search = "";
+    private searchHits: Person[] = [];
+    private searchIndex = 0;
+    private results: Div;
     /** whose org chart is shown; null = the top of the organisation */
     private orgFocus: string | null = null;
     /** when the org chart was opened with a selection: show only these people (and their managers) */
@@ -228,9 +231,26 @@ export class Visual implements IVisual {
         clusters.append("button").attr("data-cluster", "location").text("By location").on("click", () => this.switchCluster("location"));
         clusters.append("button").attr("data-cluster", "team").text("By team").on("click", () => this.switchCluster("team"));
 
-        this.searchBox = this.toolbar.append("input").classed("oc-search", true)
+        // search box with a list of matching people underneath
+        const wrap = this.toolbar.append("div").classed("oc-search-wrap", true);
+        this.searchBox = wrap.append("input").classed("oc-search", true)
             .attr("type", "search").attr("placeholder", "Find a person").attr("aria-label", "Find a person")
-            .on("input", () => { this.search = this.searchBox.property("value").trim().toLowerCase(); this.onSearch(); });
+            .attr("role", "combobox").attr("aria-autocomplete", "list").attr("aria-expanded", "false")
+            .on("input", () => {
+                this.search = this.searchBox.property("value").trim().toLowerCase();
+                this.searchIndex = 0;
+                this.onSearch();
+            })
+            .on("keydown", (event: KeyboardEvent) => {
+                const n = this.searchHits.length;
+                if (event.key === "ArrowDown" && n) { this.searchIndex = (this.searchIndex + 1) % n; this.onSearch(); event.preventDefault(); }
+                else if (event.key === "ArrowUp" && n) { this.searchIndex = (this.searchIndex - 1 + n) % n; this.onSearch(); event.preventDefault(); }
+                else if (event.key === "Enter" && n) { this.onSearch(); this.closeResults(); event.preventDefault(); }
+                else if (event.key === "Escape") { this.searchBox.property("value", ""); this.search = ""; this.onSearch(); }
+            })
+            .on("focus", () => { if (this.searchHits.length) this.renderResults(); })
+            .on("blur", () => { window.setTimeout(() => this.closeResults(), 150); });
+        this.results = wrap.append("div").classed("oc-results", true).attr("role", "listbox").style("display", "none");
 
         this.pill = this.toolbar.append("div").classed("oc-pill", true).attr("aria-live", "polite");
         const tools = this.toolbar.append("div").classed("oc-tools", true);
@@ -328,6 +348,29 @@ export class Visual implements IVisual {
         if (t) this.svg.call(this.zoomer.transform, t);
         else this.fit(false);
         this.updateFooter();
+    }
+
+    /** a name tag above each person the search found (constellation only; the org chart already shows names) */
+    private drawMatchTags() {
+        this.layer.selectAll(".oc-match-tags").remove();
+        if (this.view !== "constellation" || this.search.length < 2) return;
+        const current = this.searchHits[this.searchIndex];
+        const tags = this.layer.append("g").classed("oc-match-tags", true)
+            .selectAll("g").data(this.searchHits.slice(0, 30)).join("g")
+            .classed("current", p => p === current)
+            .attr("transform", p => `translate(${p.x},${p.y - p.r - 4})`)
+            .append("g").classed("oc-tag-inner", true);
+        tags.append("text").attr("text-anchor", "middle").attr("dy", "-0.35em").text(p => p.name)
+            .each(function () {
+                const t = this as SVGTextElement;
+                const b = t.getBBox();
+                const parent = t.parentNode as SVGGElement;
+                const r = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                r.setAttribute("x", String(b.x - 6)); r.setAttribute("y", String(b.y - 2));
+                r.setAttribute("width", String(b.width + 12)); r.setAttribute("height", String(b.height + 4));
+                r.setAttribute("rx", "5");
+                parent.insertBefore(r, t);
+            });
     }
 
     private drawConstellation() {
@@ -579,7 +622,14 @@ export class Visual implements IVisual {
 
         // who
         const top = t.append("div").classed("oc-tip-top", true);
-        top.append("div").classed("oc-tip-av", true).classed("open", p.isOpenRole).text(p.isOpenRole ? "?" : initials(p.name));
+        const av = top.append("div").classed("oc-tip-av", true).classed("open", p.isOpenRole);
+        if (p.isOpenRole) av.text("?");
+        else {
+            // the same face as in the visual
+            const g = av.append("svg").attr("viewBox", "-1 -1 2 2").attr("width", 38).attr("height", 38)
+                .append("g").datum(p);
+            appendFaces(g as unknown as Selection<SVGGElement, Person, SVGGElement | null, unknown>, d => d.id, this.faceClip);
+        }
         const who = top.append("div");
         who.append("div").classed("oc-tip-name", true).text(p.isOpenRole ? "Open role" : p.name);
         const boss = p.parent ? (p.isOpenRole ? `hiring manager ${p.parent.name}` : `reports to ${p.parent.name}`) : "top of the organisation";
@@ -685,12 +735,15 @@ export class Visual implements IVisual {
     private applyStyles() {
         if (!this.data) return;
         const anySel = this.selected.size > 0;
-        const match = (p: Person) => this.search.length > 1 && p.name.toLowerCase().includes(this.search);
+        const searching = this.search.length > 1;
+        const match = (p: Person) => searching && nameMatches(p.name, this.search);
         const outsideHighlight = (p: Person) => this.data.hasHighlights && !p.highlighted;
         // in an org chart already narrowed to the selection, the managers shown for context aren't faded
         const narrowed = this.view === "orgChart" && !!this.orgOnly;
+        // while searching, everyone who doesn't match fades so the matches stand out
         const dim = (p: Person) => (anySel && !narrowed && !this.selected.has(p.id)) || outsideHighlight(p)
-            || (this.focusTeam !== null && p.team !== this.focusTeam);
+            || (this.focusTeam !== null && p.team !== this.focusTeam)
+            || (searching && this.searchHits.length > 0 && !match(p));
         this.layer.selectAll<SVGGElement, Person>("g.oc-node")
             .classed("dim", dim).classed("sel", p => this.selected.has(p.id)).classed("match", match);
         this.layer.selectAll<SVGGElement, DeptCard>("g.oc-card")
@@ -698,6 +751,10 @@ export class Visual implements IVisual {
         this.layer.selectAll<SVGTextElement, Person>(".oc-names text").classed("dim", dim);
         this.layer.selectAll<SVGLineElement, Person>(".oc-links line").classed("dim", dim);
         this.layer.selectAll<SVGGElement, DeptBox>("g.oc-box").classed("dim", d => d.leader.children.every(dim));
+        // a team's glow fades with its people, so faded teams don't become blurry blobs
+        this.layer.selectAll<SVGCircleElement, Blob>(".oc-halos.net circle")
+            .classed("dim", b => dim(b.centre) && b.members.every(dim));
+        this.drawMatchTags();
         this.updateFooter();
     }
 
@@ -722,9 +779,45 @@ export class Visual implements IVisual {
 
     // ------------------------------------------------------------------ search, fit, lasso
 
+    private renderResults() {
+        const hits = this.searchHits;
+        this.results.selectAll("*").remove();
+        if (this.search.length < 2) { this.closeResults(); return; }
+        this.results.style("display", null);
+        this.searchBox.attr("aria-expanded", "true");
+        if (!hits.length) {
+            this.results.append("div").classed("oc-result-empty", true).text("No one matches");
+            return;
+        }
+        this.results.append("div").classed("oc-result-count", true)
+            .text(hits.length === 1 ? "1 person" : `${hits.length} people` + (hits.length > 8 ? " · showing 8" : ""));
+        hits.slice(0, 8).forEach((p, i) => {
+            const row = this.results.append("div").classed("oc-result", true).classed("active", i === this.searchIndex)
+                .attr("role", "option").attr("aria-selected", String(i === this.searchIndex))
+                .style("--oc-c", p.color)
+                .on("mousedown", (event: MouseEvent) => {
+                    event.preventDefault();
+                    this.searchIndex = i; this.onSearch(); this.closeResults();
+                });
+            row.append("i");
+            const txt = row.append("div");
+            txt.append("b").text(p.name);
+            txt.append("span").text([p.isOpenRole ? "Open role" : p.title, p.unit || p.team].filter(Boolean).join(" · "));
+        });
+    }
+
+    private closeResults() {
+        this.results.style("display", "none");
+        this.searchBox.attr("aria-expanded", "false");
+    }
+
     private onSearch() {
         if (!this.data) return;
-        const hit = this.search.length > 1 ? this.data.people.find(p => p.name.toLowerCase().includes(this.search)) : undefined;
+        const q = this.search;
+        this.searchHits = q.length > 1 ? this.data.people.filter(p => nameMatches(p.name, q)) : [];
+        if (this.searchIndex >= this.searchHits.length) this.searchIndex = 0;
+        this.renderResults();
+        const hit = this.searchHits[this.searchIndex];
         if (hit && this.view === "orgChart" && !this.deptCards.some(c => c.p === hit)) {
             // show the chart that contains the person: their manager's manager (or their manager, for a manager)
             const f = hit.children.length ? (hit.parent ?? hit) : (hit.parent?.parent ?? hit.parent ?? hit);
@@ -739,10 +832,11 @@ export class Visual implements IVisual {
             if (!it) return;
             cx = it.x + it.w / 2; cy = it.y + it.h / 2;
         }
-        const k = Math.max(this.transforms[this.view]?.k ?? 1, this.view === "constellation" ? 2 : 1.1);
+        const k = Math.max(this.transforms[this.view]?.k ?? 1, this.view === "constellation" ? 2.4 : 1.1);
         const w = this.stage.node().clientWidth, h = this.stage.node().clientHeight;
         this.svg.transition().duration(450)
-            .call(this.zoomer.transform, zoomIdentity.translate(w / 2 - cx * k, h / 2 - cy * k).scale(k));
+            // a little below the middle, so the open results list doesn't cover the person
+            .call(this.zoomer.transform, zoomIdentity.translate(w / 2 - cx * k, h * 0.6 - cy * k).scale(k));
     }
 
     private fit(animate: boolean) {
@@ -824,4 +918,10 @@ function tenure(d: Date): string {
 
 function trim(s: string, max: number): string {
     return s.length > max ? s.slice(0, max - 1) + "…" : s;
+}
+
+/** "div", "das" and "divya d" find Divya Das; letters in the middle of a word ("sh" in "Ashok") don't */
+function nameMatches(name: string, query: string): boolean {
+    const n = name.toLowerCase();
+    return n.startsWith(query) || n.split(/[\s.'-]+/).some(w => w.startsWith(query)) || n.includes(" " + query);
 }

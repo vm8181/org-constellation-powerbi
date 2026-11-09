@@ -3,7 +3,7 @@ table _Measures
 	lineageTag: a00a5c0e-8486-58d2-955b-3b944df002ce
 
 	/// People in post (open roles are not counted).
-	measure 'Headcount' = CALCULATE ( COUNTROWS ( People ), People[Status] <> "Open role" ) + 0
+	measure Headcount = CALCULATE ( COUNTROWS ( People ), People[Status] <> "Open role" ) + 0
 		formatString: #,0
 		displayFolder: People
 		lineageTag: 417eb7fc-e28c-51d3-a6a1-6ecdd1fffe18
@@ -72,3 +72,4 @@ table _Measures
 	partition _Measures = calculated
 		mode: import
 		source = ROW("Dummy", 0)
+

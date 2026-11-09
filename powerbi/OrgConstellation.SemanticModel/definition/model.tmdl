@@ -11,5 +11,10 @@ annotation __PBI_TimeIntelligenceEnabled = 0
 
 annotation PBI_QueryOrder = ["People"]
 
+annotation PBI_ProTooling = ["DevMode"]
+
 ref table _Measures
 ref table People
+
+ref cultureInfo en-US
+

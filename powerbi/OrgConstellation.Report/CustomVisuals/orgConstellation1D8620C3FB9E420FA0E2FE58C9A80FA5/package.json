@@ -1,17 +1,29 @@
 {
-		"version": "1.0.0.0",
-		"author": {"name":"Vikash Mishra","email":"vikashm6991@gmail.com"},
-		"resources": [
-			{
-				"resourceId": "rId0",
-				"sourceType": 5,
-				"file": "resources/orgConstellation1D8620C3FB9E420FA0E2FE58C9A80FA5.pbiviz.json"
-			}
-		],
-		"visual": {"name":"orgConstellation","displayName":"Org Constellation","guid":"orgConstellation1D8620C3FB9E420FA0E2FE58C9A80FA5","visualClassName":"Visual","version":"1.0.0.0","description":"An organisation shown as a constellation of people clustered by location or team, and as an org chart. Search, team highlight, lasso selection and cross-filtering.","supportUrl":"https://github.com/vm8181/org-constellation-powerbi","gitHubUrl":"https://github.com/vm8181/org-constellation-powerbi"},
-		"metadata": {
-			"pbivizjson": {
-				"resourceId": "rId0"
-			}
-		}
-	}
+  "version": "1.0.0.0",
+  "author": {
+    "name": "Vikash Mishra",
+    "email": "vikashm6991@gmail.com"
+  },
+  "resources": [
+    {
+      "resourceId": "rId0",
+      "sourceType": 5,
+      "file": "resources/orgConstellation1D8620C3FB9E420FA0E2FE58C9A80FA5.pbiviz.json"
+    }
+  ],
+  "visual": {
+    "name": "orgConstellation",
+    "displayName": "Org Constellation",
+    "guid": "orgConstellation1D8620C3FB9E420FA0E2FE58C9A80FA5",
+    "visualClassName": "Visual",
+    "version": "1.0.0.0",
+    "description": "An organisation shown as a constellation of people clustered by location or team, and as an org chart. Search, team highlight, lasso selection and cross-filtering.",
+    "supportUrl": "https://github.com/vm8181/org-constellation-powerbi",
+    "gitHubUrl": "https://github.com/vm8181/org-constellation-powerbi"
+  },
+  "metadata": {
+    "pbivizjson": {
+      "resourceId": "rId0"
+    }
+  }
+}
